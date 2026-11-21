@@ -1,5 +1,5 @@
-const CACHE="redro-reserve-shell-v5";
-const ASSETS=["./","./index.html","./manifest.webmanifest","./assets/css/app.css","./assets/js/app.js","./assets/icons/icon.svg"];
+const CACHE="redro-reserve-shell-v6";
+const ASSETS=["./","./index.html","./manifest.webmanifest","./assets/css/app.css","./assets/js/app.js","./assets/icons/icon.svg","./assets/icons/redro-logo.webp"];
 self.addEventListener("install",e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener("activate",e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
 self.addEventListener("fetch",e=>{const r=e.request;if(r.method!=="GET")return;const u=new URL(r.url);if(u.origin!==location.origin)return;e.respondWith(caches.match(r).then(cached=>cached||fetch(r).then(response=>{if(response.ok){const copy=response.clone();caches.open(CACHE).then(c=>c.put(r,copy));}return response;}).catch(()=>caches.match("./index.html"))));});
