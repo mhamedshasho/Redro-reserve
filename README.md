@@ -27,3 +27,12 @@ GitHub Actions deploys the repository root to GitHub Pages on every push to main
 ## Storage
 
 IndexedDB stores resources, bookings, and preferences. No user data is sent to a server by the application.
+## Quick usage
+
+1. Add reservable resources in **Tables & devices**.
+2. Create bookings with a start/end time or a start time and duration.
+3. The app rejects same-resource overlaps on the same day. Overnight bookings are not supported.
+4. Acknowledge end-time alarms to stop repeat alerts. While enabled, alarms repeat every 45 seconds until acknowledged.
+5. Export JSON backups regularly. Use Replace or Merge when restoring.
+
+The application has no external API or cloud service. IndexedDB data belongs to the current browser/device and is not synchronized automatically. Keep the app open and allow audio for alarms; closed or suspended PWAs cannot guarantee alerts.
